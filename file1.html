@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Уралсиб</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f8;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+             width: 25%;
+             background: #5b2a86;
+             color: white;
+             padding: 30px;
+             display: flex;
+             flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            background: #3c1361;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2a0d47;
+        }
+
+        .center-panel {
+            width: 75%;
+            padding: 40px;
+        }
+
+        .screen {
+             display: none;
+        }
+
+        .active {
+             display: block;
+        }
+
+        .success {
+              color: green;
+              font-weight: bold;
+              margin-top: 15px;
+        }
+
+        .error {
+              color: red;
+              font-weight: bold;
+        }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ЛЕВАЯ ПАНЕЛЬ -->
+<div class="left-panel">
+    <h2>Уралсиб</h2>
+
+    <input type="text" id="login" placeholder="Логин">
+    <input type="password" id="password" placeholder="Пароль">
+
+    <button onclick="login()">АВТОРИЗОВАТЬСЯ</button>
+    <button onclick="showRegister()">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+</div>
+
+<!-- ЦЕНТР -->
+<div class="center-panel">
+
+    <!-- Главный экран -->
+    <div id="homeScreen" class="screen active">
+        <h2>Добро пожаловать!</h2>
+        <p>Авторизуйтесь для перевода средств.</p>
+    </div>
+
+    <!-- Экран регистрации -->
+    <div id="registerScreen" class="screen">
+        <h2>Регистрация</h2>
+        <input type="text" id="newLogin" placeholder="Новый логин">
+        <input type="password" id="newPassword" placeholder="Новый пароль">
+        <button onclick="register()">Создать аккаунт</button>
+        <p id="registerMessage"></p>
+    </div>
+
+    <!-- Экран перевода -->
+    <div id="transferScreen" class="screen">
+        <h2>Перевод средств</h2>
+
+        <input type="text" id="cardNumber" placeholder="Номер карты">
+        <input type="text" id="amount" placeholder="Сумма перевода">
+        <input type="text" id="message" placeholder="Сообщение получателю">
+
+        <button onclick="transfer()">ПЕРЕВЕСТИ</button>
+        <p id="transferMessage"></p>
+    </div>
+
+</div>
+</div>
+
+<script>
+
+let savedLogin = "";
+let savedPassword = "";
+
+// Показать экран
+function showScreen(screenId) {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+    document.getElementById(screenId).classList.add("active");
+}
+
+// Регистрация
+function showRegister() {
+    showScreen("registerScreen");
+}
+
+function register() {
+    let login = document.getElementById("newLogin").value;
+    let password = document.getElementById("newPassword").value;
+    let message = document.getElementById("registerMessage");
+
+    if(login === "" || password === "") {
+        message.innerHTML = "Заполните все поля!";
+        message.className = "error";
+        return;
+    }
+
+    savedLogin = login;
+    savedPassword = password;
+
+    message.innerHTML = "Аккаунт успешно создан!";
+    message.className = "success";
+}
+
+// Авторизация
+function login() {
+    let login = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
+
+    if(login === savedLogin && password === savedPassword) {
+        showScreen("transferScreen");
+    } else {
+        alert("Неверный логин или пароль!");
+    }
+}
+
+// Перевод
+function transfer() {
+    let card = document.getElementById("cardNumber").value;
+    let amount = document.getElementById("amount").value;
+    let messageText = document.getElementById("transferMessage");
+
+    if(card === "" || amount === "") {
+        messageText.innerHTML = "Заполните обязательные поля!";
+        messageText.className = "error";
+        return;
+    }
+
+    messageText.innerHTML = "Перевод успешно выполнен!";
+    messageText.className = "success";
+}
+
+</script>
+
+</body>
+</html>

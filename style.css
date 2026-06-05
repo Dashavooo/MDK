@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f8;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Левая панель */
+.left-panel {
+    width: 25%;
+    background: #5b2a86;
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+}
+
+.remember {
+    margin-bottom: 15px;
+}
+
+.btn {
+    background: #3c1361;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #2a0d47;
+}
+
+.secondary {
+    background: #7b52ab;
+}
+
+.info-text {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Центр */
+.center-panel {
+    width: 50%;
+    padding: 40px;
+}
+
+.card-form {
+    background: #5b2a86;
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.card-form input {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.card-form .btn {
+    width: 100%;
+}
+
+/* Правая панель */
+.right-panel {
+    width: 25%;
+    background: white;
+    padding: 30px;
+}
+
+.logos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.logo-box {
+    padding: 20px;
+    background: #e6e6f0;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+}
